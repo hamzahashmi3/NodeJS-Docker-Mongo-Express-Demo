@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        .container, .container-edit {
+            margin: 40px auto;
+            width: 80%;
+        }
+        img {
+            width: 300px;
+            height: 280px;
+            display: block;
+            margin-bottom: 20px;
+        }
+        h3 {
+            display: inline-block;
+        }
+        hr {
+            width: 70%;
+            margin-left: 0;
+        }
+        .button {
+            width: 160px;
+            height: 45px;
+            font-size: 15px;
+            margin-top: 25px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="header">User Profile</h1>
+        <img src="1.jpeg" alt="1.jpeg">
+        Name: <h3 id="name">Anna Smith</h3>
+        <hr>
+        Email: <h3 id="email">anna.smith@example.com</h3>
+        <hr>
+        Interests: <h3 id="interests">coding</h3>
+        <hr>
+        <button class="button" onclick="editProfile()">Edit Profile</button>
+    </div>
+    <div class="container-edit" style="display:none;">
+        <h1 id="header">User Profile</h1>
+        <img src="1.jpeg" alt="Profile Picture">
+        Name: <input id="input-name" type="text" value="Anna Smith">
+        <hr>
+        Email: <input id="input-email" type="email" value="anna.smith@example.com">
+        <hr>
+        Interests: <input id="input-interests" type="text" value="coding">
+        <hr>
+        <button class="button" onclick="saveProfile()">Save Profile</button>
+    </div>
+    <script>
+        function editProfile() {
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('.container-edit').style.display = 'block';
+        }
+        
+        function saveProfile() {
+            const name = document.getElementById('input-name').value;
+            const email = document.getElementById('input-email').value;
+            const interests = document.getElementById('input-interests').value;
+
+            document.getElementById('name').textContent = name;
+            document.getElementById('email').textContent = email;
+            document.getElementById('interests').textContent = interests;
+
+            document.querySelector('.container-edit').style.display = 'none';
+            document.querySelector('.container').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
