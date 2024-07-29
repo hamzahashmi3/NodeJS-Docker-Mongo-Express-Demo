@@ -15,15 +15,19 @@ Welcome to my first DevOps project! This project demonstrates the integration of
 - **Mongo Express UI**: Utilize Mongo Express for a user-friendly interface to interact with MongoDB.
 
 ## Project Structure
-```plaintext
-myapp/
+
+NodeJS-Docker-Mongo-Express-Demo/
 ├── public/
 │   └── index.html
+│   └── Assetes
+│         └── 1.jpeg
 ├── server.js
+├── .gitignore
+├── package.json
+├── package-lock.json
 ├── Dockerfile
 ├── docker-compose.yml
 └── README.md
-```
 
 ## Getting Started
 
@@ -35,7 +39,7 @@ myapp/
 ### Installation
 
 1. **Clone the repository:**
-   git clone https://github.com/yourusername/NodeJS-Docker-Mongo-Express-Demo.git
+   git clone https://github.com/hamzahashmi3/NodeJS-Docker-Mongo-Express-Demo.git
    cd NodeJS-Docker-Mongo-Express-Demo
 
 2. **Install Node.js dependencies:**
@@ -107,3 +111,109 @@ Feel free to fork this repository, suggest improvements, or use it as a starting
    - Use a cloud service (e.g., AWS, Heroku, DigitalOcean) to deploy your Dockerized application.
 
 This README file will guide how to set up and run your project, providing a clear overview of what my project does and how to get started with it.
+
+
+### How to Connect Docker and Use MongoDB Image on Ubuntu
+
+# Step 1: Install Docker
+
+       . First, you need to install Docker on your Ubuntu system. You can do this by running the following commands:
+
+·         sudo apt update
+
+·         sudo apt install docker.io -y
+
+·         sudo systemctl start docker
+
+·         sudo systemctl enable docker
+
+
+# Step 2: Go to Docker Hub
+
+      . Navigate to Docker Hub (https://hub.docker.com/) in your web browser.
+
+ 
+# Step 3: Search for MongoDB
+
+       . In the search bar on Docker Hub, type "mongo" to find the official MongoDB image.
+
+
+# Step 4: Install MongoDB and Mongo Express
+
+       . Pull the MongoDB and Mongo Express images from Docker Hub using the following commands:
+
+·         sudo docker pull mongo
+
+·         sudo docker pull mongo-express
+
+# Step 5: Check If Images Are Created
+
+       . Verify that the images have been downloaded successfully by listing all Docker images:
+
+·         sudo docker images
+
+# Step 6: Create a Network for MongoDB
+
+       . Create a Docker network to allow MongoDB and Mongo Express to communicate:
+
+·         sudo docker network create mongo-network
+
+# Step 7: Check Network Creation
+
+       . Ensure that the network has been created by listing all Docker networks:
+
+·         sudo docker network ls
+
+# Step 8: Configure MongoDB in Docker
+
+Run the MongoDB container with the following command:
+
+·         sudo docker run -d \
+
+-p 27017:27017 --network mongo-network \
+
+--name mongodb \
+
+-e MONGO_INITDB_ROOT_USERNAME=admin \
+
+-e MONGO_INITDB_ROOT_PASSWORD=password \
+
+mongo
+
+# Step 9: Configure Mongo Express
+
+       . Run the Mongo Express container with the following command:
+
+·         sudo docker run -d -p 8081:8081 \
+
+-e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
+
+-e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
+
+--network mongo-network --name mongo-express \
+
+-e ME_CONFIG_MONGODB_SERVER=mongodb \
+
+mongo-express
+
+# Step 10: Check Docker Logs
+
+       . List all running containers to verify that both MongoDB and Mongo Express are running:
+
+·         sudo docker ps
+
+# Step 11: See the Docker Logs of Specific Container
+
+View the logs of the MongoDB container to ensure it is running correctly:
+
+·         sudo docker logs <container_id>
+
+Replace `<container_id>` with the actual container ID of the MongoDB instance, which you can find from the output of the `sudo docker ps` command.
+
+# Step 12: Run the Docker MongoDB in localhost
+
+·         Localhost:8081
+
+·         Username: admin
+
+·         Password: pass
